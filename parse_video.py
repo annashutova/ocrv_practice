@@ -1,20 +1,25 @@
+import os
+
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
-import pathlib
-import whisper
+
+from gradio_client import Client, file
+
+import config
 
 
-CURRENT_DIR = pathlib.Path(__file__).parent.resolve()
-
-MIN_SEGMENT_DURATION = 1 * 1000  # 1 second
-MAX_SEGMENT_DURATION = 10 * 1000  # 10 seconds
-MIN_SILENCE_LEN = 500  # 0.5 seconds
-SILENCE_THRESH = -20
-# SILENCE_THRESH_DW = -35
-# MIN_SILENCE_LEN_DW = 300
+CURRENT_DIR = os.getcwd()
 
 
-def segment_audio_file(path_to_file: str, file_format: str) -> None:
+def segment_audio_file(
+        path_to_file: str,
+        file_format: str,
+        export_audio_format: str,
+        min_seg_dur: int = 1000,
+        max_seg_dur: int = 10000,
+        min_silence_len: int = 1000,
+        silence_thresh: int = -30
+) -> None:
     """
     Segments an audio file into chunks based on silence and export to separate mp3 files.
 
@@ -25,39 +30,67 @@ def segment_audio_file(path_to_file: str, file_format: str) -> None:
     Returns:
         None
     """
+    base_export_name = os.path.basename(path_to_file)
+
     # Load the audio file
     mp4_audio = AudioSegment.from_file(f'{path_to_file}.{file_format}', format=file_format)
 
     # Split the audio on silence
     chunks: list[AudioSegment] = split_on_silence(
         mp4_audio,
-        min_silence_len=MIN_SILENCE_LEN,
-        silence_thresh=SILENCE_THRESH,
+        min_silence_len=min_silence_len,
+        silence_thresh=silence_thresh,
+        keep_silence=300  # 0.3 seconds
     )
 
-    # filtered_chunks = list(filter(is_filtered_by_duration, chunks))
-
     # Load the Whisper model
-    model = whisper.load_model("base")
+    # model = whisper.load_model("base")
+
+
+    # Check the existence of directories
+    audio_export_dir = f'{CURRENT_DIR}/audio_segments/{base_export_name}'
+    txt_export_dir = f'{CURRENT_DIR}/text_segments/{base_export_name}'
+
+    if not os.path.exists(audio_export_dir):
+        os.mkdir(audio_export_dir)
+    if not os.path.exists(txt_export_dir):
+        os.mkdir(txt_export_dir)
 
     # Export each filtered by length audio
     for i, chunk in enumerate(chunks):
-        if is_filtered_by_duration(chunk):
+        if is_filtered_by_duration(chunk, min_seg_dur, max_seg_dur):
             print(f"Chunk length: {len(chunk)} ms")
-            output_mp3_file = f"{CURRENT_DIR}/audio_segments/chunk{i}.mp3"
-            print("Exporting file", output_mp3_file)
-            chunk.export(output_mp3_file, format="mp3")
+            output_audio_file = f"{audio_export_dir}/{base_export_name}_chunk{i}.{export_audio_format}"
+            print("Exporting file", output_audio_file)
+            chunk.export(output_audio_file, format=export_format)
+
+            output_txt_file = f"{txt_export_dir}/{base_export_name}_chunk{i}.txt"
 
             # Transcribe audio file and export
-            transcription = model.transcribe(output_mp3_file, language='ru')
-            output_txt_file = f"{CURRENT_DIR}/text_segments/chunk{i}.txt"
+            # transcription = model.transcribe(output_mp3_file, language='ru')
+            #
+            # with open(output_txt_file, "w") as f:
+            #     print(f"▼ Transcription of {output_txt_file}\n")
+            #     f.write(transcription['text'])
 
-            with open(output_txt_file, "w") as f:
-                print(f"▼ Transcription of {output_txt_file}\n")
-                f.write(transcription['text'])
+
+def transcribe_with_api(client: Client, input_wav_file: str, output_txt_file: str):
+    result = client.predict(
+        inputs=file(input_wav_file),
+        task="transcribe",
+        api_name="/predict"
+    )
+
+    with open(output_txt_file, "w") as f:
+        print(f"▼ Transcription of {input_wav_file}\n")
+        f.write(result)
 
 
-def is_filtered_by_duration(audio_segment: AudioSegment) -> bool:
+def is_filtered_by_duration(
+        audio_segment: AudioSegment,
+        min_seg_dur: int = 1000,
+        max_seg_dur: int = 10000,
+) -> bool:
     """
     Checks whether AudioSegment duration lies between MIN_SEGMENT_DURATION and MAX_SEGMENT_DURATION.
 
@@ -67,11 +100,20 @@ def is_filtered_by_duration(audio_segment: AudioSegment) -> bool:
     Returns:
         bool
     """
-    return MIN_SEGMENT_DURATION <= len(audio_segment) <= MAX_SEGMENT_DURATION
+    return min_seg_dur <= len(audio_segment) <= max_seg_dur
 
 
 if __name__ == '__main__':
-    test_file_path = f'{CURRENT_DIR}/friends_audio'
+    test_file_path = f'{CURRENT_DIR}/videos/alco_videos_2'
     file_format = 'mp4'
+    export_format = 'mp3'
 
-    segment_audio_file(test_file_path, file_format)
+    segment_audio_file(
+        test_file_path,
+        file_format,
+        export_format,
+        min_seg_dur=config.MIN_SEG_DUR_FRIENDS,
+        max_seg_dur=config.MAX_SEG_DUR_FRIENDS,
+        min_silence_len=config.MIN_SILENCE_LEN_AV1,
+        silence_thresh=config.SILENCE_THRESH_AV1,
+    )
