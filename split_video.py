@@ -3,8 +3,6 @@ import os
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 
-from gradio_client import Client, file
-
 import config
 
 
@@ -43,10 +41,6 @@ def segment_audio_file(
         keep_silence=300  # 0.3 seconds
     )
 
-    # Load the Whisper model
-    # model = whisper.load_model("base")
-
-
     # Check the existence of directories
     audio_export_dir = f'{CURRENT_DIR}/audio_segments/{base_export_name}'
     txt_export_dir = f'{CURRENT_DIR}/text_segments/{base_export_name}'
@@ -64,26 +58,7 @@ def segment_audio_file(
             print("Exporting file", output_audio_file)
             chunk.export(output_audio_file, format=export_format)
 
-            output_txt_file = f"{txt_export_dir}/{base_export_name}_chunk{i}.txt"
-
-            # Transcribe audio file and export
-            # transcription = model.transcribe(output_mp3_file, language='ru')
-            #
-            # with open(output_txt_file, "w") as f:
-            #     print(f"▼ Transcription of {output_txt_file}\n")
-            #     f.write(transcription['text'])
-
-
-def transcribe_with_api(client: Client, input_wav_file: str, output_txt_file: str):
-    result = client.predict(
-        inputs=file(input_wav_file),
-        task="transcribe",
-        api_name="/predict"
-    )
-
-    with open(output_txt_file, "w") as f:
-        print(f"▼ Transcription of {input_wav_file}\n")
-        f.write(result)
+            # output_txt_file = f"{txt_export_dir}/{base_export_name}_chunk{i}.txt"
 
 
 def is_filtered_by_duration(
@@ -104,7 +79,7 @@ def is_filtered_by_duration(
 
 
 if __name__ == '__main__':
-    test_file_path = f'{CURRENT_DIR}/videos/alco_videos_2'
+    test_file_path = f'{CURRENT_DIR}/videos/славик_и_димон'
     file_format = 'mp4'
     export_format = 'mp3'
 
@@ -112,8 +87,8 @@ if __name__ == '__main__':
         test_file_path,
         file_format,
         export_format,
-        min_seg_dur=config.MIN_SEG_DUR_FRIENDS,
-        max_seg_dur=config.MAX_SEG_DUR_FRIENDS,
-        min_silence_len=config.MIN_SILENCE_LEN_AV1,
-        silence_thresh=config.SILENCE_THRESH_AV1,
+        min_seg_dur=config.MIN_SEG_DUR_DEFAULT,
+        max_seg_dur=config.MAX_SEG_DUR_DEFAULT,
+        min_silence_len=config.MIN_SILENCE_LEN_SD,
+        silence_thresh=config.SILENCE_THRESH_SD,
     )
