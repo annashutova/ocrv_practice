@@ -1,6 +1,6 @@
 # friends_audio
-MIN_SEG_DUR_FRIENDS = 1 * 1000  # 1 second
-MAX_SEG_DUR_FRIENDS = 10 * 1000  # 10 seconds
+MIN_SEG_DUR_DEFAULT = 1 * 1000  # 1 second
+MAX_SEG_DUR_DEFAULT = 10 * 1000  # 10 seconds
 MIN_SILENCE_LEN_FRIENDS = 500  # 0.5 seconds
 SILENCE_THRESH_FRIENDS = -20
 
@@ -34,8 +34,33 @@ MIN_SILENCE_LEN_RM = 200
 SILENCE_THRESH_AV1 = -40  # perfect
 MIN_SILENCE_LEN_AV1 = 200
 
-# alco_videos_1
+# alco_videos_2
 MIN_SEG_DUR_AV2 = 0.5 * 1000  # 0.5 second
 MAX_SEG_DUR_AV2 = 10 * 1000  # 10 seconds
 SILENCE_THRESH_AV2 = -35  # perfect
 MIN_SILENCE_LEN_AV2 = 100
+
+# alco_videos_3
+SILENCE_THRESH_AV3 = -35
+MIN_SILENCE_LEN_AV3 = 100
+
+
+# alco_videos_4
+SILENCE_THRESH_AV4 = -40  # perfect
+MIN_SILENCE_LEN_AV4 = 100
+
+# Пьяные_сцены_из_советских_комедий
+SILENCE_THRESH_SC = -45
+MIN_SILENCE_LEN_SC = 100
+
+# yes_man
+SILENCE_THRESH_YM = -30
+MIN_SILENCE_LEN_YM = 100
+
+# купе_номер_6
+SILENCE_THRESH_6 = -20
+MIN_SILENCE_LEN_6 = 100
+
+# славик_и_димон
+SILENCE_THRESH_SD = -40
+MIN_SILENCE_LEN_SD = 100
