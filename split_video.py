@@ -24,6 +24,11 @@ def segment_audio_file(
     Args:
         path_to_file (str): The path to the audio file without the file extension.
         file_format (str): The format of the audio file (e.g., 'mp4').
+        export_audio_format (str): The format of the export file (e.g., 'mp3').
+        min_seg_dur (int): Minimal segment duration.
+        max_seg_dur (int): Maximum segment duration.
+        min_silence_len (int): Minimal silence duration.
+        silence_thresh (int): The upper bound for how quiet is silent in dBFS.
 
     Returns:
         None
@@ -71,6 +76,8 @@ def is_filtered_by_duration(
 
     Args:
         audio_segment (AudioSegment): AudioSegment to check.
+        min_seg_dur (int): Minimal segment duration.
+        max_seg_dur (int): Maximum segment duration.
 
     Returns:
         bool
