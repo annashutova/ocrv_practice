@@ -63,3 +63,15 @@ MIN_SILENCE_LEN_6 = 100
 # славик_и_димон
 SILENCE_THRESH_SD = -40
 MIN_SILENCE_LEN_SD = 100
+
+# Приколы_с_алкашами_1
+SILENCE_THRESH_FA1 = -40
+MIN_SILENCE_LEN_FA1 = 100
+
+# Приколы_с_алкашами_2
+SILENCE_THRESH_FA2 = -50  # perfect
+MIN_SILENCE_LEN_FA2 = 100
+
+# Приколы_с_алкашами_3
+SILENCE_THRESH_FA3 = -30
+MIN_SILENCE_LEN_FA3 = 100
