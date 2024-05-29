@@ -3,7 +3,7 @@ import os
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 
-import config
+from config import CONFIG
 
 
 BASE_DIR = os.path.dirname(os.getcwd())
@@ -85,15 +85,15 @@ def is_filtered_by_duration(
 
 
 if __name__ == '__main__':
-    test_file_path = f'{BASE_DIR}/raw_data/video/славик_и_димон'
+    video_title = 'Сумасшедшие_бабки_3'
     file_format = 'mp4'
 
     segment_audio_file(
-        test_file_path,
+        f'{BASE_DIR}/raw_data/video/{video_title}',
         file_format,
         EXPORT_AUDIO_FORMAT,
-        min_seg_dur=config.MIN_SEG_DUR_DEFAULT,
-        max_seg_dur=config.MAX_SEG_DUR_DEFAULT,
-        min_silence_len=config.MIN_SILENCE_LEN_SD,
-        silence_thresh=config.SILENCE_THRESH_SD,
+        min_seg_dur=CONFIG[video_title]['min_segment_dur'],
+        max_seg_dur=CONFIG[video_title]['max_segment_dur'],
+        min_silence_len=CONFIG[video_title]['min_silence_len'],
+        silence_thresh=CONFIG[video_title]['silence_thresh'],
     )
