@@ -161,4 +161,76 @@ CONFIG = {
         'min_silence_len': 300,
         'silence_thresh': -40,
     },
+    'Сумасшедшие_бабки_1': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 300,
+        'silence_thresh': -35,
+    },
+    'Сумасшедшие_бабки_2': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 300,
+        'silence_thresh': -40,
+    },
+    'Сумасшедшие_бабки_3': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 600,
+        'silence_thresh': -35,
+    },
+    'Муж_вернулся_пьяный_домой_6_кадров': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 300,
+        'silence_thresh': -35,
+    },
+    'пьяный_сын_возвращается_домой': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 300,
+        'silence_thresh': -40,
+    },
+    'Пьяный_отец_возвращается_домой': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 1000,
+        'silence_thresh': -30,
+    },
+    'Пьяный_сын_пришел_домой': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -40,
+    },
+    'Пьяный_сторож_на_стройке': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 200,
+        'silence_thresh': -28,
+    },
+    'Пьяный_быдлан_в_поезде': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 200,
+        'silence_thresh': -30,
+    },
+    'Пьяный_и_рыдающий_маменькин_сынок_напал_на_полицейского_в_поезде': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 10 * 1000,
+        'min_silence_len': 200,
+        'silence_thresh': -38,
+    },
+    'С_поезда_сняли_пьяного_дебошира': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 600,  # 500
+        'silence_thresh': -15,
+    },
+    'Пьяная_хулиганка_в_поезде': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -18,  # -25
+    },
 }

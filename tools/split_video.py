@@ -85,7 +85,7 @@ def is_filtered_by_duration(
 
 
 if __name__ == '__main__':
-    video_title = 'Сумасшедшие_бабки_3'
+    video_title = 'Пьяная_хулиганка_в_поезде'
     file_format = 'mp4'
 
     segment_audio_file(
