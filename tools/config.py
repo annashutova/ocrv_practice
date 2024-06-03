@@ -239,4 +239,28 @@ CONFIG = {
         'min_silence_len': 500,
         'silence_thresh': -30,
     },
+    'Пьяный_дебош_в_Апатитской_больнице': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -30,
+    },
+    'пьяные_устроили_дебош_в_автобусе_Мурманска': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -20,  # -30
+    },
+    'Пьяный_в_ресторане_6_кадров': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -32,  # -30
+    },
+    'Пьяный_в_поезде': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -30,  # -40
+    },
 }
