@@ -263,4 +263,10 @@ CONFIG = {
         'min_silence_len': 500,
         'silence_thresh': -30,  # -40
     },
+    'Быдло_сняли_с_поезда_в_Ростове': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -47,
+    },
 }
