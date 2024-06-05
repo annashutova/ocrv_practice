@@ -263,10 +263,22 @@ CONFIG = {
         'min_silence_len': 500,
         'silence_thresh': -30,  # -40
     },
-    'Быдло_сняли_с_поезда_в_Ростове': {
+    'Drunk_in_train_Rostov': {
         'min_segment_dur': 1 * 1000,
         'max_segment_dur': 15 * 1000,
         'min_silence_len': 500,
         'silence_thresh': -47,
+    },
+    'Drunk_trainer_in_train': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -27,
+    },
+    'Drunk_lady_on_lake_shore': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -30,
     },
 }
