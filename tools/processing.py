@@ -23,6 +23,9 @@ def preprocess_text(text: str, morph_analyzer: MorphAnalyzer):
 
 
 def preprocess_data(csv_data: pd.DataFrame, morph_analyzer: MorphAnalyzer) -> pd.DataFrame:
+    """
+    Предобработка csv данных: предобработка текста, разделение строк с множественным выбором эмоций.
+    """
     additional_rows = []
     for i in csv_data.index:
         csv_data.at[i, 'text'] = preprocess_text(csv_data.at[i, 'text'], morph_analyzer)
