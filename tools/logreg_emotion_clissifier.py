@@ -1,13 +1,13 @@
 import nltk
-import pymorphy2
 import os
 import pandas as pd
+import pymorphy2
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 
-from processing import preprocess_text
+from processing import preprocess_data
 
 
 BASE_DIR = os.path.dirname(os.getcwd())
@@ -20,11 +20,10 @@ nltk.download('punkt')
 nltk.download('stopwords')
 morph = pymorphy2.MorphAnalyzer(lang='ru')
 
-
-data['text'] = data['text'].apply(preprocess_text, args=(morph,))
+data = preprocess_data(data, morph)
 
 # Разделение данных на тренировочный и тестовый наборы
-X_train, X_test, y_train, y_test = train_test_split(data['text'], data['alcohol'], test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(data['text'], data['emotion'], test_size=0.2, random_state=42)
 
 # Векторизация текста с использованием TF-IDF
 vectorizer = TfidfVectorizer(max_features=5000)
