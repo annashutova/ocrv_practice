@@ -12,7 +12,7 @@ EXPORT_AUDIO_FORMAT = 'wav'
 
 def segment_audio_file(
         path_to_file: str,
-        file_format: str,
+        input_file_format: str,
         export_audio_format: str,
         min_seg_dur: int = 1000,
         max_seg_dur: int = 10000,
@@ -24,7 +24,7 @@ def segment_audio_file(
 
     Args:
         path_to_file (str): The path to the audio file without the file extension.
-        file_format (str): The format of the audio file (e.g., 'mp4').
+        input_file_format (str): The format of the audio file (e.g., 'mp4').
         export_audio_format (str): The format of the export file (e.g., 'wav').
         min_seg_dur (int): Minimal segment duration.
         max_seg_dur (int): Maximum segment duration.
@@ -37,7 +37,7 @@ def segment_audio_file(
     base_export_name = os.path.basename(path_to_file)
 
     # Load the audio file
-    mp4_audio = AudioSegment.from_file(f'{path_to_file}.{file_format}', format=file_format)
+    mp4_audio = AudioSegment.from_file(f'{path_to_file}.{input_file_format}', format=input_file_format)
 
     # Split the audio on silence
     chunks: list[AudioSegment] = split_on_silence(
@@ -85,7 +85,7 @@ def is_filtered_by_duration(
 
 
 if __name__ == '__main__':
-    video_title = 'Пьяная_хулиганка_в_поезде'
+    video_title = 'Drunk_lady_on_lake_shore'
     file_format = 'mp4'
 
     segment_audio_file(
