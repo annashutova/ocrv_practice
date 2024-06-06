@@ -281,4 +281,22 @@ CONFIG = {
         'min_silence_len': 500,
         'silence_thresh': -30,
     },
+    '6_frames_drunk_in_pharmacy': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -20,
+    },
+    'invented_vodka_again': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -30,
+    },
+    'drunk_mother_with_child': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 500,
+        'silence_thresh': -45,  # -25
+    },
 }
