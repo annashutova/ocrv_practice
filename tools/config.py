@@ -299,4 +299,16 @@ CONFIG = {
         'min_silence_len': 500,
         'silence_thresh': -45,  # -25
     },
+    'drunk_neighbor': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 300,
+        'silence_thresh': -35,  # -30
+    },
+    'drunk_builders': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 300,
+        'silence_thresh': -30,
+    },
 }
