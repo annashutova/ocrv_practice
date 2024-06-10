@@ -311,4 +311,10 @@ CONFIG = {
         'min_silence_len': 300,
         'silence_thresh': -30,
     },
+    'drunk_wife_of_policeman': {
+        'min_segment_dur': 1 * 1000,
+        'max_segment_dur': 15 * 1000,
+        'min_silence_len': 300,  # 500
+        'silence_thresh': -35,
+    },
 }
