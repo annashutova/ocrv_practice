@@ -31,6 +31,10 @@
 │       └── ...
 ├── tools
 │   ├── config.py
+│   ├── logreg_alco_classifier.py
+│   ├── logreg_emotion_clissifier.py
+│   ├── processing.py
+│   ├── rnn_emotion_classifier.py
 │   ├── split_video.py
 │   └── whisper_transcription.ipynb
 ├── documentation
@@ -66,6 +70,7 @@ tools:
   - logreg_alco_classifier.py: Предобработка данных и обучение модели классификации алкогольного опьянения.
   - logreg_emotion_clissifier.py: Предобработка данных и обучение модели классификации эмоций.
   - processing.py: Функции для предобработки данных.
+  - rnn_emotion_classifier.py: Скрипт для обучения модели RNN.
   - split_video.py: Скрипт для разделения видео на сегменты по тишине и сохранения их как wav файлов.
   - whisper_transcription.ipynb: Jupiter Notebook скрипт для транскрибирования аудио сегментов.
 
