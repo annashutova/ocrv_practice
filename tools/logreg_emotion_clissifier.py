@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 
-from processing import preprocess_data
+from processing import preprocess_emotions, preprocess_text
 
 
 BASE_DIR = os.path.dirname(os.getcwd())
@@ -20,7 +20,8 @@ nltk.download('punkt')
 nltk.download('stopwords')
 morph = pymorphy2.MorphAnalyzer(lang='ru')
 
-data = preprocess_data(data, morph)
+data['text'] = data['text'].apply(preprocess_text, args=(morph,))
+data = preprocess_emotions(data)
 
 # Разделение данных на тренировочный и тестовый наборы
 X_train, X_test, y_train, y_test = train_test_split(data['text'], data['emotion'], test_size=0.2, random_state=42)
